@@ -29,8 +29,8 @@ def test_ingredient():
     assert type(ingredient_shrimp.__hash__()) == int
     assert ingredient_butter.__hash__() == ingredient_butter02.__hash__()
     assert ingredient_butter.__hash__() != ingredient_shrimp.__hash__()
-    assert ingredient_butter.__eq__(ingredient_butter02) == True
-    assert ingredient_butter.__eq__(ingredient_shrimp) == False
-    assert ingredient_shrimp.__eq__(ingredient_butter) == False
+    assert ingredient_butter.__eq__(ingredient_butter02) is True
+    assert ingredient_butter.__eq__(ingredient_shrimp) is False
+    assert ingredient_shrimp.__eq__(ingredient_butter) is False
     assert ingredient_butter.__repr__() == "Ingredient('manteiga')"
     assert ingredient_shrimp.__repr__() == "Ingredient('camarão')"

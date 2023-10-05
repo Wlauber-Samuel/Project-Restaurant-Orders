@@ -10,10 +10,16 @@ def test_dish():
     ingredient_shrimp = Ingredient("camarão")
     ingredient_butter = Ingredient("manteiga")
 
-    with pytest.raises(TypeError, match="Dish price must be float."):
-        invalid_price_type = Dish("Lasanha", "12.90")
-    with pytest.raises(ValueError, match="Dish price must be greater then zero."):
-        invalid_price_value = Dish("Lasanha", -12.90)
+    with pytest.raises(
+        TypeError,
+        match="Dish price must be float."
+    ):
+        Dish("Lasanha", "12.90")
+    with pytest.raises(
+        ValueError,
+        match="Dish price must be greater then zero."
+    ):
+        Dish("Lasanha", -12.90)
 
     lasanha = Dish("Lasanha", 12.90)
     feijoada = Dish("Feijoada", 20.90)
@@ -27,10 +33,10 @@ def test_dish():
 
     assert lasanha.__repr__() == "Dish('Lasanha', R$12.90)"
     assert feijoada.__repr__() == "Dish('Feijoada', R$20.90)"
-    assert lasanha.__eq__(lasanha) == True
-    assert lasanha.__eq__(feijoada) == False
-    assert feijoada.__eq__(feijoada) == True
-    assert feijoada.__eq__(lasanha) == False
+    assert lasanha.__eq__(lasanha) is True
+    assert lasanha.__eq__(feijoada) is False
+    assert feijoada.__eq__(feijoada) is True
+    assert feijoada.__eq__(lasanha) is False
     assert type(lasanha.__hash__()) == int
     assert type(feijoada.__hash__()) == int
     assert lasanha.__hash__() != feijoada.__hash__()

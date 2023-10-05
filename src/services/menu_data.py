@@ -1,6 +1,5 @@
 from src.models.dish import Dish
 from src.models.ingredient import Ingredient
-from src.models.ingredient import Restriction
 
 import sys
 
