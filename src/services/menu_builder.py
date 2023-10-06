@@ -31,7 +31,8 @@ class MenuBuilder:
             new_item = {}
 
             dish = self.menu_data.dishes.pop()
-            ingredients = dish.recipe.keys()
+            recipe = dish.recipe
+            ingredients = recipe.keys()
 
             new_item["dish_name"] = dish.name
             new_item["price"] = dish.price
@@ -43,6 +44,8 @@ class MenuBuilder:
                 new_item["restrictions"].update(ingredient.restrictions)
 
             if restriction in new_item["restrictions"]:
+                continue
+            if not self.inventory.check_recipe_availability(recipe):
                 continue
             filtered_list.append(new_item)
         return filtered_list
