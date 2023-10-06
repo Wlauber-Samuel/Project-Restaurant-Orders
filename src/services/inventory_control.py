@@ -32,7 +32,11 @@ class InventoryMapping:
                 return False
             if recipe[ingredient] > self.inventory[ingredient]:
                 return False
+        return True
 
     # Req 5.2
     def consume_recipe(self, recipe: Recipe) -> None:
-        pass
+        if not self.check_recipe_availability(recipe):
+            raise ValueError
+        for ingredient in recipe:
+            self.inventory[ingredient] -= recipe[ingredient]
