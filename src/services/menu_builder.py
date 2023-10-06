@@ -29,15 +29,20 @@ class MenuBuilder:
         filtered_list = []
         while len(self.menu_data.dishes) > 0:
             new_item = {}
+
             dish = self.menu_data.dishes.pop()
+            ingredients = dish.recipe.keys()
+
             new_item["dish_name"] = dish.name
             new_item["price"] = dish.price
             new_item["ingredients"] = set()
             new_item["restrictions"] = set()
-            ingredients = dish.recipe.keys()
+
             for ingredient in ingredients:
-                if restriction not in ingredient.restrictions:
-                    new_item["ingredients"].add(ingredient)
-                    new_item["restrictions"].update(ingredient.restrictions)
+                new_item["ingredients"].add(ingredient)
+                new_item["restrictions"].update(ingredient.restrictions)
+
+            if restriction in new_item["restrictions"]:
+                continue
             filtered_list.append(new_item)
         return filtered_list
